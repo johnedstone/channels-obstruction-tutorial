@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     'game',
     'channels',
     'webpack_loader',
+    'rest_framework',
 ]
  
 MIDDLEWARE_CLASSES = [

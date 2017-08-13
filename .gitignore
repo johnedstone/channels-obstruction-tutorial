@@ -101,3 +101,6 @@ ENV/
 .mypy_cache/
 
 node_modules
+
+# Django
+static

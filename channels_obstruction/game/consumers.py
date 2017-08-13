@@ -33,7 +33,13 @@ class LobbyConsumer(JsonWebsocketConsumer):
         Called when a message is received with either text or bytes
         filled out.
         """
-        http_user = True
+        channel_session_user = True
+
+        # get the action that's coming in
+        action = content['action']
+        if action == 'create_game':
+            # create a new game using the part of the channel name
+            Game.create_new(self.message.user)
 
 
     def disconnect(self, message, **kwargs):
