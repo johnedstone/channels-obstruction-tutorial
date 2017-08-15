@@ -104,3 +104,4 @@ node_modules
 
 # Django
 static
+db.sqlite3
