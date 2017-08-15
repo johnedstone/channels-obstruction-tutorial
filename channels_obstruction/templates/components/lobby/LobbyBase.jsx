@@ -19,7 +19,7 @@ class LobbyBase extends React.Component {
     }
 
     getPlayerGames(){
-        this.serverRequest = $.get('http://localhost:8080/player-games/?format=json', function (result) {
+        this.serverRequest = $.get('http://127.0.0.1:9999/player-games/?format=json', function (result) {
            this.setState({
             player_game_list: result,
              })
@@ -27,7 +27,7 @@ class LobbyBase extends React.Component {
     }
 
     getAvailableGames(){
-        this.serverRequest = $.get('http://localhost:8080/available-games/?format=json', function (result) {
+        this.serverRequest = $.get('http://127.0.0.1:9999/available-games/?format=json', function (result) {
            this.setState({
             available_game_list: result
              })
