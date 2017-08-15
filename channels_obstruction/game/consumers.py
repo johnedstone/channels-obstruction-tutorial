@@ -38,7 +38,6 @@ class LobbyConsumer(JsonWebsocketConsumer):
 
         # get the action that's coming in
         action = content['action']
-        print(action)
 
         if action == 'create_game':
             # create a new game using the part of the channel name
