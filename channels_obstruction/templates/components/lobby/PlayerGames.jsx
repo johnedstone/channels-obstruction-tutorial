@@ -14,7 +14,8 @@ class PlayerGames extends React.Component{
     }
 
     onCreateGameClick(event) {
-        this.props.sendSocketMessage({action: "create_game"})
+        console.log('create game');
+        this.props.sendSocketMessage({action: "create_game"});
     }
 
 
@@ -91,3 +92,4 @@ PlayerGames.propTypes = {
 
 
 export default PlayerGames
+

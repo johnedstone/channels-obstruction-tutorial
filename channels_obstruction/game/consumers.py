@@ -34,9 +34,12 @@ class LobbyConsumer(JsonWebsocketConsumer):
         filled out.
         """
         channel_session_user = True
+        print('receiving')
 
         # get the action that's coming in
         action = content['action']
+        print(action)
+
         if action == 'create_game':
             # create a new game using the part of the channel name
             Game.create_new(self.message.user)
