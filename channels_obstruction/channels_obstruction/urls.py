@@ -19,6 +19,7 @@ urlpatterns += [
 ]
 router = DefaultRouter()
 router.register(r'player-games', PlayerGameViewSet, 'player_games')
+router.register(r'available-games', AvailableGameViewSet, 'available_games')
 urlpatterns += router.urls
 
 # vim: ai et ts=4 sts=4 sw=4 ru nu

@@ -40,3 +40,13 @@ class PlayerGameViewSet(viewsets.ViewSet):
         serializer = GameSerializer(
             queryset, many=True, context={'request': request})
         return Response(serializer.data)
+
+class AvailableGameViewSet(viewsets.ViewSet):
+    """
+    API endpoint for available/open games
+    """
+
+    def list(self, request):
+        queryset = Game.get_available_games()
+        serializer = GameSerializer(queryset, many=True)
+        return Response(serializer.data)
