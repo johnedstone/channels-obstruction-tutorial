@@ -10,7 +10,9 @@ urlpatterns = [
     url(r'^login/$', login, {'template_name': 'login.html'}),
     url(r'^logout/$', logout, {'next_page': '/'}),
     url(r'^lobby/$', LobbyView.as_view()),
-    url(r'^$', HomeView.as_view())
+    url(r'^game/(?P<game_id>\d+)/$', GameView.as_view()),
+
+    url(r'^$', HomeView.as_view()),
 ]
 
 # urls for api - django rest framework
