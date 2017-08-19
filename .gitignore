@@ -105,4 +105,3 @@ node_modules
 # Django
 static
 db.sqlite3
-webpack-stats.json

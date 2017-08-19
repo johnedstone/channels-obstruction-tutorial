@@ -7,7 +7,8 @@ var BundleTracker = require('webpack-bundle-tracker');
 module.exports = {
   context: __dirname,
   entry: {
-          lobby: './templates/components/lobby/index',
+      lobby: './templates/components/lobby/index',
+      game: './templates/components/game/index'
   },
   output: {
       path: path.resolve('./static/bundles/'),

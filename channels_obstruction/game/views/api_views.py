@@ -10,7 +10,7 @@ from django.http import Http404
 class CurrentUserView(APIView):
 
     def get(self, request):
-        #print('CurrentUser: {}'.format(request.user))
+        print('CurrentUser: {}'.format(request.user))
         #from django.contrib.auth.models import User
         serializer = UserSerializer(request.user)
         #serializer = UserSerializer(User.objects.get(pk=1))
@@ -50,3 +50,42 @@ class AvailableGameViewSet(viewsets.ViewSet):
         queryset = Game.get_available_games()
         serializer = GameSerializer(queryset, many=True)
         return Response(serializer.data)
+
+class SingleGameViewSet(APIView):
+    """
+    Get all data for a game: Game Details, Squares
+    """
+ 
+    def get(self, request, **kwargs):
+        game = Game.get_by_id(kwargs['game_id'])
+        squares = game.get_all_game_squares()
+        game_serializer = GameSerializer(game)
+        square_serializer = GameSquareSerializer(squares, many=True)
+        return_data = {'game': game_serializer.data,
+                'squares': square_serializer.data}
+        return Response(return_data)
+ 
+ 
+class GameSquaresViewSet(viewsets.ViewSet):
+     
+    def retrieve(self, request, pk=None):
+        game = get_object_or_404(Game, pk=pk)
+        squares = game.get_all_game_squares()
+        serializer = GameSquareSerializer(squares, many=True)
+        return Response(serializer.data)
+ 
+class ClaimSquareView(APIView):
+     
+    def get_object(self, pk):
+        try:
+           return Game.objects.get(pk=pk)
+        except Game.DoesNotExist:
+           raise Http404
+ 
+    def put(self, request, pk):
+        game = self.get_object(pk)
+        # update the owner
+        print(game)
+        return Response(serializer.errors)
+
+# vim: ai et ts=4 sw=4 sts=4 ru nu

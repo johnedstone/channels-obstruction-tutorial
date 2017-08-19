@@ -18,10 +18,12 @@ urlpatterns = [
 # urls for api - django rest framework
 urlpatterns += [
     url(r'^current-user/', CurrentUserView.as_view()),
+    url(r'^game-from-id/(?P<game_id>\d+)/$', SingleGameViewSet.as_view()),
 ]
 router = DefaultRouter()
 router.register(r'player-games', PlayerGameViewSet, 'player_games')
 router.register(r'available-games', AvailableGameViewSet, 'available_games')
+router.register(r'game-squares', GameSquaresViewSet, 'game_squares')
 urlpatterns += router.urls
 
 # vim: ai et ts=4 sts=4 sw=4 ru nu

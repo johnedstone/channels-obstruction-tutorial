@@ -16,4 +16,24 @@ class GameSerializer(serializers.ModelSerializer):
                   'rows', 'completed', 'created', 'current_turn')
         depth = 1
 
+
+class GameSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        fields = ('id', 'winner', 'creator', 'opponent', 'cols', 
+                  'rows', 'completed', 'created', 'current_turn')
+        depth = 1
+
+
+class GameSquareSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameSquare
+        fields = ('id', 'game', 'owner', 'status', 'row', 'col')
+
+
+class GameLogSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameLog
+        fields = ('id', 'text', 'player', 'created')
+        depth = 1
 # vim: ai et ts=4 sts=4 sw=4 ru nu

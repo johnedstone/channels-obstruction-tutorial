@@ -10,11 +10,16 @@ from django.utils.decorators import method_decorator
 class HomeView(TemplateView):
     template_name = 'home.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        # if logged in, send them to the lobby
+        if request.user.is_authenticated:
+            return redirect('/lobby/')
+        super(HomeView, self).dispatch(request, *args, **kwargs)
 
 class CreateUserView(CreateView):
     template_name = 'register.html'
     form_class = UserCreationForm
-    success_url = '/'
+    success_url = '/lobby/'
 
     def form_valid(self, form):
         valid = super(CreateUserView, self).form_valid(form)
@@ -51,6 +56,7 @@ class GameView(TemplateView):
         # get the game by the id
         self.game = Game.get_by_id(kwargs['game_id'])
         user = get_user(request)
+        print('From the GameView, who is the user: {}'.format(user))
         # check to see if the game is open and available for this user
         # if this player is the creator, just return
         if self.game.creator == user or self.game.opponent == user:
